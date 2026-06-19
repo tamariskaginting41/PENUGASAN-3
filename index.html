@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mockup Penerapan SPtLDV - Interaktif</title>
+    <style>
+        /* Reset & Base Styles */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #090d16;
+            color: #f1f5f9;
+            height: 100vh;
+            display: flex;
+            overflow: hidden;
+        }
+
+        /* Container Rasio Utama 16:9 */
+        .main-container {
+            display: flex;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        /* --- SEPARUH KIRI: PANEL NAVIGASI & KONTEN (50%) --- */
+        .left-panel {
+            width: 50%;
+            height: 100%;
+            background-color: #111827;
+            padding: 25px 30px;
+            overflow-y: auto;
+            border-right: 3px solid #3b82f6;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .header-section {
+            border-bottom: 2px solid #1f2937;
+            padding-bottom: 12px;
+            margin-bottom: 15px;
+        }
+
+        .header-section h1 {
+            font-size: 20px;
+            margin: 0 0 5px 0;
+            color: #60a5fa;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .header-section .author-info {
+            font-size: 13px;
+            color: #9ca3af;
+            margin: 2px 0;
+        }
+
+        /* Tab Menu Navigasi Samping Internal */
+        .tab-menu {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .tab-item {
+            padding: 8px 16px;
+            background: #1f2937;
+            border: 1px solid #374151;
+            border-radius: 6px;
+            font-size: 13px;
+            color: #9ca3af;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .tab-item.active {
+            background: #3b82f6;
+            color: #ffffff;
+            border-color: #3b82f6;
+        }
+
+        /* Box Area Konten */
+        .content-box {
+            background-color: #1f2937;
+            border: 1px solid #374151;
+            border-radius: 8px;
+            padding: 20px;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+
+        .content-box h2 {
+            font-size: 15px;
+            color: #3b82f6;
+            margin-top: 0;
+            margin-bottom: 10px;
+            border-left: 4px solid #3b82f6;
+            padding-left: 8px;
+        }
+
+        .content-box p, .content-box li {
+            font-size: 13.5px;
+            line-height: 1.6;
+            color: #d1d5db;
+            margin-bottom: 12px;
+        }
+
+        .math {
+            font-family: 'Times New Roman', serif;
+            font-style: italic;
+            font-weight: bold;
+            color: #fbbf24;
+        }
+
+        /* Soal Pilihan Ganda */
+        .quiz-wrapper {
+            margin-top: 15px;
+            background: #111827;
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid #374151;
+        }
+
+        .question {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #f9fafb;
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .option-item {
+            background-color: #1f2937;
+            border: 1px solid #374151;
+            border-radius: 4px;
+            padding: 8px 12px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .option-item:hover {
+            border-color: #3b82f6;
+        }
+
+        .option-item.correct {
+            border-color: #10b981;
+            background-color: rgba(16, 185, 129, 0.1);
+        }
+
+        .footer-text {
+            font-size: 11px;
+            color: #4b5563;
+            text-align: center;
+            margin-top: 15px;
+            border-top: 1px solid #1f2937;
+            padding-top: 10px;
+        }
+
+        /* --- SEPARUH KANAN: PANEL IFRAME ASSEMBLR (50%) --- */
+        .right-panel {
+            width: 50%;
+            height: 100%;
+            position: relative;
+            background-color: #030712;
+        }
+
+        .iframe-container {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .badge-ar {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(59, 130, 246, 0.9);
+            color: #ffffff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: bold;
+            pointer-events: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            letter-spacing: 0.5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="main-container">
+
+    <!-- SEPARUH KIRI: INTERFAKS NAVIGASI, MATERI & EVALUASI -->
+    <div class="left-panel">
+        <div>
+            <!-- Header Identitas Sekolah & Guru -->
+            <div class="header-section">
+                <h1>PENERAPAN SPtLDV (FASE E)</h1>
+                <div class="author-info"><strong>Penyusun:</strong> Tamariska Berseba Br Ginting, S.Pd.</div>
+                <div class="author-info">SMA Negeri 1 Kabanjahe</div>
+            </div>
+
+            <!-- Tab Simulasi Menu -->
+            <div class="tab-menu">
+                <div class="tab-item active">Tujuan & Materi</div>
+                <div class="tab-item">Kuis PG (10 Soal)</div>
+            </div>
+
+            <!-- Konten Utama -->
+            <div class="content-box">
+                <h2>Tujuan Pembelajaran</h2>
+                <p>Peserta didik dapat menyelesaikan masalah kontekstual yang berkaitan dengan sistem pertidaksamaan linear dua variabel menggunakan pemodelan matematika dan pembuktian visual daerah bersih.</p>
+                
+                <h2>Uraian Materi Penerapan</h2>
+                <p>Dalam kehidupan sehari-hari, sistem pertidaksamaan digunakan untuk mengoptimalkan alokasi sumber daya terbatas (seperti modal, lahan, atau bahan baku).</p>
+                <p><strong>Langkah Konseptual:</strong><br>
+                1. Menentukan variabel bebas (<span class="math">x</span> dan <span class="math">y</span>).<br>
+                2. Menyusun model matematika berdasarkan kendala soal cerita.<br>
+                3. Menentukan Daerah Himpunan Penyelesaian (DHP) pada koordinat.<br>
+                4. Amati objek grafik 3D di sisi kanan untuk memperjelas batas visual.</p>
+
+                <!-- Cuplikan Fitur 10 Soal Pilihan Ganda -->
+                <div class="quiz-wrapper">
+                    <div class="question"><strong>Soal No. 1:</strong> Seorang penjahit membuat baju kaos (<span class="math">x</span>) dan kemeja (<span class="math">y</span>). Kapasitas produksi maksimum adalah 40 potong. Model pertidaksamaan yang tepat adalah...</div>
+                    <div class="options-list">
+                        <div class="option-item"><span class="math">x + y &gt; 40</span></div>
+                        <div class="option-item"><span class="math">x + y &ge; 40</span></div>
+                        <div class="option-item correct"><strong>C. <span class="math">x + y &le; 40</span> (Benar)</strong></div>
+                        <div class="option-item"><span class="math">x + y &lt; 40</span></div>
+                        <div class="option-item"><span class="math">x + y = 40</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer-text">
+            Media Interaktif &bull; SMA Negeri 1 Kabanjahe &bull; Materi Program Linear Kelas X
+        </div>
+    </div>
+
+    <!-- SEPARUH KANAN: EMBED ASSEMBLR EDU FULL SCREEN (50%) -->
+    <div class="right-panel">
+        <div class="badge-ar"><i class="fa-solid fa-cube"></i> MEDIA INTERAKTIF 3D/AR</div>
+        <iframe 
+            class="iframe-container"
+            src="https://viewer.assemblrworld.com/Embed/-ydGALFC6VfuPgdTv5ZG" 
+            allow="camera; microphone; gyroscope; accelerometer; magnetometer; xr-spatial-tracking; fullscreen" 
+            allowFullScreen>
+        </iframe>
+    </div>
+
+</div>
+
+</body>
+</html>
